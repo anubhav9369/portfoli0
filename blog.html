@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Writing — Anubhav Verma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06090d;--bg2:#090d13;--bg3:#0d131c;
+  --fg:#f0f5fa;--fg2:#9fb2c5;--fg3:#5a6b7d;
+  --border:#1a2634;--border2:#243140;
+  --accent:#00e5a0;--dim:rgba(0,229,160,.07);
+  --card:#0b1118;--card2:#0f1722;
+  --glow:0 0 40px rgba(0,229,160,.18);
+  --radius:16px;--radius-sm:10px;--maxw:1180px;
+}
+[data-theme="light"]{
+  --bg:#f4f6fa;--bg2:#eceff5;--bg3:#e2e7ef;--fg:#0b1622;--fg2:#3c5168;--fg3:#7b93ab;
+  --border:#d4dde8;--border2:#c2cfdd;--card:#fff;--card2:#f6f9fc;--dim:rgba(0,180,110,.07);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{background:var(--bg);color:var(--fg);font-family:'Space Grotesk',sans-serif;line-height:1.6;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+::-webkit-scrollbar{width:8px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:8px;}
+.serif{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+
+/* NAV */
+#nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:300;display:flex;align-items:center;gap:6px;background:rgba(11,17,24,.7);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:50px;padding:7px 8px 7px 18px;}
+[data-theme="light"] #nav{background:rgba(255,255,255,.72);}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:500;margin-right:14px;}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;gap:2px;}
+.nav-links a{font-size:13.5px;color:var(--fg2);padding:8px 15px;border-radius:40px;transition:all .2s;font-weight:500;}
+.nav-links a:hover{color:var(--fg);background:var(--dim);}
+.nav-cta{font-size:13px;font-weight:600;background:var(--accent);color:#04130d;padding:9px 18px;border-radius:40px;margin-left:6px;transition:all .25s;}
+.nav-cta:hover{background:#00ffc0;box-shadow:var(--glow);}
+@media(max-width:720px){.nav-links{display:none;}#nav{left:16px;right:16px;transform:none;}}
+
+/* HEADER */
+.blog-hero{padding:140px 0 50px;}
+.crumb{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--fg3);margin-bottom:22px;display:flex;gap:8px;align-items:center;}
+.crumb a:hover{color:var(--accent);}
+.crumb .sep{opacity:.5;}.crumb .cur{color:var(--accent);}
+.sec-tag{display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+.sec-tag::before{content:'';width:24px;height:1px;background:var(--accent);}
+.blog-hero h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:600;letter-spacing:-.03em;line-height:1.05;margin-bottom:16px;}
+.blog-hero h1 .serif{color:var(--accent);}
+.blog-hero p{font-size:16px;color:var(--fg2);max-width:560px;line-height:1.7;}
+
+/* WRITING BLOCKS + CARDS */
+.blog-body{padding:0 0 110px;}
+.writing-block{margin-bottom:60px;}
+.writing-subhead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:26px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.writing-subhead h3{font-size:22px;font-weight:600;letter-spacing:-.02em;}
+.writing-subhead span{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.03em;color:var(--fg3);}
+.post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.post{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .3s,transform .3s;display:flex;flex-direction:column;}
+.post:hover{border-color:var(--border2);transform:translateY(-4px);}
+.post-thumb{aspect-ratio:16/10;background:linear-gradient(135deg,var(--card2),var(--bg3));display:flex;align-items:center;justify-content:center;color:var(--fg3);position:relative;border-bottom:1px solid var(--border);overflow:hidden;}
+.post-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.post-thumb .ph{font-family:'Instrument Serif',serif;font-size:42px;color:var(--accent);opacity:.5;}
+.post-body{padding:24px;flex:1;display:flex;flex-direction:column;}
+.post-meta{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:var(--accent);margin-bottom:12px;text-transform:uppercase;}
+.post-body h3{font-size:17px;font-weight:600;line-height:1.35;margin-bottom:10px;letter-spacing:-.01em;}
+.post-body p{font-size:13.5px;color:var(--fg2);line-height:1.65;margin-bottom:18px;flex:1;}
+.post-read{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg3);transition:color .2s;}
+.post:hover .post-read{color:var(--accent);}
+.post-loading{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;gap:14px;padding:60px 0;color:var(--fg3);font-family:'JetBrains Mono',monospace;font-size:12px;}
+.post-empty{grid-column:1/-1;text-align:center;padding:48px 24px;border:1px dashed var(--border2);border-radius:var(--radius);color:var(--fg2);}
+.post-empty h3{font-size:18px;font-weight:600;color:var(--fg);margin-bottom:8px;}
+.post-empty p{font-size:14px;color:var(--fg3);}
+.ai-typing{display:flex;gap:4px;align-items:center;}
+.ai-typing span{width:5px;height:5px;background:var(--accent);border-radius:50%;animation:aiDot .9s ease infinite;}
+.ai-typing span:nth-child(2){animation-delay:.2s;}.ai-typing span:nth-child(3){animation-delay:.4s;}
+@keyframes aiDot{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:1}}
+
+footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg3);}
+footer a{color:var(--accent);}
+
+[data-r]{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+[data-r].vis{opacity:1;transform:none;}
+
+@media(max-width:1024px){.post-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:680px){.post-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">av<span>.</span></a>
+  <div class="nav-links">
+    <a href="index.html#work">Work</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#writing">Writing</a>
+    <a href="index.html#journey">Journey</a>
+  </div>
+  <a href="index.html#contact" class="nav-cta">Let's Talk</a>
+</nav>
+
+<header class="blog-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">Home</a><span class="sep">/</span><span class="cur">Writing</span></div>
+    <div class="sec-tag">From the Desk</div>
+    <h1>All <span class="serif">writings.</span></h1>
+    <p>Everything I've published — the technical deep-dives and the personal essays. Two streams, one curious mind.</p>
+  </div>
+</header>
+
+<main class="blog-body">
+  <div class="wrap">
+    <div class="writing-block">
+      <div class="writing-subhead"><h3>Tech &amp; AI</h3><span>ML, deep learning, the things I build &amp; break</span></div>
+      <div class="post-grid" id="postGridTech">
+        <div class="post-loading"><div class="ai-typing"><span></span><span></span><span></span></div><p>Loading posts from dev.to…</p></div>
+      </div>
+    </div>
+    <div class="writing-block">
+      <div class="writing-subhead"><h3>Off the Clock</h3><span>personal essays, my POV on the world, love &amp; everything non-tech</span></div>
+      <div class="post-grid" id="postGridPersonal"></div>
+    </div>
+  </div>
+</main>
+
+<footer>© 2026 Anubhav Verma · <a href="index.html">Back to home</a></footer>
+
+<script src="blogs.js"></script>
+<script>
+  loadBlogs({
+    techGrid: document.getElementById('postGridTech'),
+    personalGrid: document.getElementById('postGridPersonal'),
+    limit: null   // show ALL posts
+  });
+</script>
+</body>
+</html>
